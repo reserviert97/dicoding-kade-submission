@@ -1,5 +1,6 @@
 package com.nurlatif.submission1
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
@@ -8,6 +9,7 @@ import android.widget.Toast
 import com.nurlatif.submission1.R.array.*
 import com.nurlatif.submission1.R.layout.activity_main
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.startActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +25,9 @@ class MainActivity : AppCompatActivity() {
         league_recyclerview.adapter = RecyclerViewAdapter(this, items){
             val toast = Toast.makeText(applicationContext, it.name, Toast.LENGTH_SHORT)
             toast.show()
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra(DetailActivity.ITEM_KEY, it)
+            startActivity(intent)
         }
 
     }

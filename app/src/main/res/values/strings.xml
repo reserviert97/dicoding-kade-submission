@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">submission1</string>
+    <string name="item_title">League Name</string>
+    <string name="image_desc">league logo</string>
 
     <!-- leagues data-->
     <integer-array name="leaguesId">

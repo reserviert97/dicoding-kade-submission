@@ -1,4 +1,4 @@
-package com.nurlatif.submission1
+package com.nurlatif.submission.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

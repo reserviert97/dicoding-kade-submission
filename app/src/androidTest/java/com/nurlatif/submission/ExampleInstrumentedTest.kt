@@ -1,4 +1,4 @@
-package com.nurlatif.submission1
+package com.nurlatif.submission
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

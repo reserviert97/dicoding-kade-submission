@@ -1,4 +1,4 @@
-package com.nurlatif.submission1
+package com.nurlatif.submission
 
 import org.junit.Test
 

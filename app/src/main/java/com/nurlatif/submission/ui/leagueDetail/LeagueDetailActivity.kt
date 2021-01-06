@@ -1,14 +1,15 @@
-package com.nurlatif.submission1
+package com.nurlatif.submission.ui.leagueDetail
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_detail.*
-import com.nurlatif.submission1.R.layout.activity_detail
+import kotlinx.android.synthetic.main.activity_detail_league.*
+import com.nurlatif.submission.R.layout.activity_detail_league
+import com.nurlatif.submission.model.Item
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.debug
 
-class DetailActivity : AppCompatActivity(), AnkoLogger {
+class LeagueDetailActivity : AppCompatActivity(), AnkoLogger {
 
     companion object {
         val ITEM_KEY = "league_data"
@@ -16,7 +17,7 @@ class DetailActivity : AppCompatActivity(), AnkoLogger {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(activity_detail)
+        setContentView(activity_detail_league)
 
         val league = intent.extras?.getParcelable<Item>(ITEM_KEY)
 

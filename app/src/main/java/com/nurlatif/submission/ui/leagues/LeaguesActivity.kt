@@ -1,31 +1,34 @@
-package com.nurlatif.submission1
+package com.nurlatif.submission.ui.leagues
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.nurlatif.submission1.R.array.*
-import com.nurlatif.submission1.R.layout.activity_main
-import kotlinx.android.synthetic.main.activity_main.*
+import com.nurlatif.submission.R.array.*
+import com.nurlatif.submission.R.layout.activity_leagues
+import com.nurlatif.submission.LeaguesAdapter
+import com.nurlatif.submission.model.Item
+import com.nurlatif.submission.ui.leagueDetail.LeagueDetailActivity
+import kotlinx.android.synthetic.main.activity_leagues.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.debug
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 
-class MainActivity : AppCompatActivity(), AnkoLogger {
+class LeaguesActivity : AppCompatActivity(), AnkoLogger {
 
     private var items: MutableList<Item> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(activity_main)
+        setContentView(activity_leagues)
         initData()
 
         league_recyclerview.layoutManager = GridLayoutManager(this, 2, RecyclerView.VERTICAL, false)
-        league_recyclerview.adapter = RecyclerViewAdapter(this, items){
+        league_recyclerview.adapter = LeaguesAdapter(this, items){
             toast(it.name)
-            startActivity<DetailActivity>(DetailActivity.ITEM_KEY to it)
+            startActivity<LeagueDetailActivity>(LeagueDetailActivity.ITEM_KEY to it)
         }
 
 

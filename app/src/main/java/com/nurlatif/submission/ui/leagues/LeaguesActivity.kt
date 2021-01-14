@@ -6,7 +6,6 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.nurlatif.submission.R.array.*
 import com.nurlatif.submission.R.layout.activity_leagues
-import com.nurlatif.submission.LeaguesAdapter
 import com.nurlatif.submission.model.Item
 import com.nurlatif.submission.ui.leagueDetail.LeagueDetailActivity
 import kotlinx.android.synthetic.main.activity_leagues.*
@@ -45,7 +44,7 @@ class LeaguesActivity : AppCompatActivity(), AnkoLogger {
             items.add(Item(id[i], name[i], desc[i], image.getResourceId(i, 0)))
         }
 
-        debug("[MainActivity] total leagues data : ${items.size}")
+        debug("[LeaguesActivity] total leagues data : ${items.size}")
         image.recycle()
     }
 }

@@ -1,4 +1,4 @@
-package com.nurlatif.submission
+package com.nurlatif.submission.ui.leagues
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView

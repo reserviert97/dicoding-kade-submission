@@ -21,7 +21,7 @@ class LeagueDetailActivity : AppCompatActivity(), AnkoLogger {
 
         val league = intent.extras?.getParcelable<Item>(ITEM_KEY)
 
-        debug("[DetailActivity] Successfully pass data : ${league?.name}")
+        debug("[LeagueDetailActivity] Successfully pass data : ${league?.name}")
 
         detail_title.text = league?.name
         detail_id.text = league?.id.toString()

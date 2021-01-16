@@ -23,7 +23,6 @@ class HighlightPresenter(private val view: HighlightView, private val api: ApiRe
             )
 
             debug("HighlightPresenter, ${data.leagues[0]}")
-
             uiThread {
                 view.loadData(data.leagues[0])
             }

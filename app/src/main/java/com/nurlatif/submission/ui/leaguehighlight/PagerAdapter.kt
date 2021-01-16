@@ -3,6 +3,8 @@ package com.nurlatif.submission.ui.leaguehighlight
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import com.nurlatif.submission.ui.leaguehighlight.match.NextMatchFragment
+import com.nurlatif.submission.ui.leaguehighlight.match.LastMatchFragment
 
 class PagerAdapter(manager: FragmentManager): FragmentPagerAdapter(manager) {
 

@@ -1,7 +1,6 @@
 package com.nurlatif.submission.network
 
 import com.google.gson.annotations.SerializedName
-import com.nurlatif.submission.model.League
 
 data class DetailLeagueResponse(val leagues: List<LeagueResponse>)
 

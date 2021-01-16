@@ -10,6 +10,7 @@ import com.nurlatif.submission.model.League
 import com.nurlatif.submission.network.Event
 import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.item_match.view.*
 import kotlinx.android.synthetic.main.league_grid_item.view.*
 
 class MatchAdapter(
@@ -33,7 +34,14 @@ class MatchAdapter(
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
         fun bindItem(items: Event, listener: (Event) -> Unit) {
-//            containerView.itemTitle.text = items.name
+            containerView.homeName.text = items.teamHomeName
+            containerView.homeScore.text = items.teamHomeScore
+
+            containerView.awayName.text = items.teamAwayName
+            containerView.awayScore.text = items.teamAwayScore
+
+            containerView.matchDate.text = items.eventDate
+
 //            items.image.let { Picasso.get().load(it).into(containerView.itemImage) }
             containerView.setOnClickListener { listener(items) }
         }

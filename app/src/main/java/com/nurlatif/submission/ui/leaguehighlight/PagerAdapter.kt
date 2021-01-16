@@ -8,17 +8,16 @@ import com.nurlatif.submission.ui.leaguehighlight.match.LastMatchFragment
 
 class PagerAdapter(manager: FragmentManager): FragmentPagerAdapter(manager) {
 
-    private val pages = listOf(
-        LastMatchFragment(),
-        NextMatchFragment()
-    )
 
     override fun getCount(): Int {
-        return pages.size
+        return 2
     }
 
     override fun getItem(position: Int): Fragment {
-        return pages[position]
+        return when(position){
+            0 -> LastMatchFragment()
+            else -> NextMatchFragment()
+        }
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

@@ -16,13 +16,14 @@ object TheSportDBApi {
             .toString()
     }
 
-    fun getLeagues(): String {
+    fun getDetailLeague(leagueId: String?): String {
         return Uri.parse(BuildConfig.BASE_URL).buildUpon()
             .appendPath("api")
             .appendPath("v1")
             .appendPath("json")
             .appendPath(BuildConfig.TSDB_API_KEY)
-            .appendPath("all_leagues.php")
+            .appendPath("lookupleague.php")
+            .appendQueryParameter("id", leagueId)
             .build()
             .toString()
     }

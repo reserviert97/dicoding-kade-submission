@@ -6,7 +6,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.nurlatif.submission.R.array.*
 import com.nurlatif.submission.R.layout.activity_leagues
-import com.nurlatif.submission.model.Item
+import com.nurlatif.submission.model.League
 import com.nurlatif.submission.ui.leagueDetail.LeagueDetailActivity
 import kotlinx.android.synthetic.main.activity_leagues.*
 import org.jetbrains.anko.AnkoLogger
@@ -17,11 +17,12 @@ import org.jetbrains.anko.toast
 
 class LeaguesActivity : AppCompatActivity(), AnkoLogger {
 
-    private var items: MutableList<Item> = mutableListOf()
+    private var items: MutableList<League> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activity_leagues)
+
         initData()
 
         league_recyclerview.layoutManager = GridLayoutManager(this, 2, RecyclerView.VERTICAL, false)
@@ -41,10 +42,12 @@ class LeaguesActivity : AppCompatActivity(), AnkoLogger {
 
         items.clear()
         for (i in id.indices) {
-            items.add(Item(id[i], name[i], desc[i], image.getResourceId(i, 0)))
+            items.add(League(id[i], name[i], desc[i], image.getResourceId(i, 0)))
         }
 
         debug("[LeaguesActivity] total leagues data : ${items.size}")
         image.recycle()
     }
+
+
 }

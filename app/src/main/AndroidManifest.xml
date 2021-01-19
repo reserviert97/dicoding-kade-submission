@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nurlatif.submission">
+    package="com.nurlatif.submission" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,11 +10,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Submission1">
-        <activity android:name=".ui.matchDetail.DetailMatchActivity"></activity>
+        android:theme="@style/Theme.Submission1" >
+        <activity android:name=".ui.searchMatch.SearchMatchActivity" >
+        </activity>
+        <activity android:name=".ui.matchDetail.DetailMatchActivity" />
         <activity android:name=".ui.leaguehighlight.HighlightActivity" />
         <activity android:name=".ui.leagueDetail.LeagueDetailActivity" />
-        <activity android:name=".ui.leagues.LeaguesActivity">
+        <activity android:name=".ui.leagues.LeaguesActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

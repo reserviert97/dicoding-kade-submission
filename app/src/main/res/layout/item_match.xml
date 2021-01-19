@@ -36,7 +36,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.506"
-            app:srcCompat="@drawable/spanish_la_liga" />
+            tools:srcCompat="@drawable/spanish_la_liga" />
 
         <ImageView
             android:id="@+id/AwayLogo"
@@ -48,7 +48,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.506"
-            app:srcCompat="@drawable/spanish_la_liga" />
+            tools:srcCompat="@drawable/spanish_la_liga" />
 
         <TextView
             android:id="@+id/awayScore"

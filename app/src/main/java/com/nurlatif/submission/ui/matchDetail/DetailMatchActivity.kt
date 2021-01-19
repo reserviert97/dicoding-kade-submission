@@ -64,7 +64,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView{
     }
 
     override fun loadImage(homeBadge: String, awayBadge: String) {
-        homeBadge.let { Picasso.get().load(it).into(homeTeamLogo) }
-        awayBadge.let { Picasso.get().load(it).into(AwayLogo) }
+        homeBadge.let { Picasso.get().load(it).error(R.drawable.ic_broken).placeholder(R.drawable.loading_animation).into(homeTeamLogo) }
+        awayBadge.let { Picasso.get().load(it).error(R.drawable.ic_broken).placeholder(R.drawable.loading_animation).into(AwayLogo) }
     }
 }

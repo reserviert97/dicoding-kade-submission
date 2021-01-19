@@ -7,6 +7,8 @@ data class EventsResponse(val events: List<Event>)
 data class Event(
     @SerializedName("idEvent")
     var eventId: String? = null,
+    @SerializedName("strEvent")
+    var eventName: String? = null,
     @SerializedName("dateEvent")
     var eventDate: String? = null,
     @SerializedName("idHomeTeam")

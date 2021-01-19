@@ -6,31 +6,31 @@ data class DetailLeagueResponse(val leagues: List<LeagueResponse>)
 
 data class LeagueResponse(
     @SerializedName("idLeague")
-    var leagueId: String? = null,
+    val leagueId: String? = null,
 
     @SerializedName("strLeagueAlternate")
-    var leagueNickname: String? = null,
+    val leagueNickname: String? = null,
 
     @SerializedName("strCurrentSeason")
-    var currentSeason: String? = null,
+    val currentSeason: String? = null,
 
     @SerializedName("strCountry")
-    var country: String? = null,
+    val country: String? = null,
 
     @SerializedName("strTrophy")
-    var trophy: String? = null,
+    val trophy: String? = null,
 
     @SerializedName("strFanart1")
-    var fanArt1: String? = null,
+    val fanArt1: String? = null,
 
     @SerializedName("strFanart2")
-    var fanArt2: String? = null,
+    val fanArt2: String? = null,
 
     @SerializedName("strFanart3")
-    var fanArt3: String? = null,
+    val fanArt3: String? = null,
 
     @SerializedName("strFanart4")
-    var fanArt4: String? = null
+    val fanArt4: String? = null
 )
 
 

@@ -5,24 +5,34 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.gson.Gson
 import com.nurlatif.submission.R
 import com.nurlatif.submission.model.League
+import com.nurlatif.submission.network.ApiRepository
+import com.nurlatif.submission.network.DetailTeamResponse
 import com.nurlatif.submission.network.Event
+import com.nurlatif.submission.network.TheSportDBApi
 import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_match.view.*
 import kotlinx.android.synthetic.main.league_grid_item.view.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 class MatchAdapter(
     private val context: Context,
     private val items: List<Event>,
+    private val api: ApiRepository,
+    private val gson: Gson,
     private val listener: (Event) -> Unit
 ) : RecyclerView.Adapter<MatchAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(
-            LayoutInflater.from(context).inflate(R.layout.item_match, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.item_match, parent, false),
+            api,
+            gson
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -31,7 +41,10 @@ class MatchAdapter(
 
     override fun getItemCount(): Int = items.size
 
-    class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
+    class ViewHolder(
+        override val containerView: View, private val api: ApiRepository,
+        private val gson: Gson
+    ) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
         fun bindItem(items: Event, listener: (Event) -> Unit) {
             containerView.homeName.text = items.teamHomeName
@@ -42,8 +55,25 @@ class MatchAdapter(
 
             containerView.matchDate.text = items.eventDate
 
-//            items.image.let { Picasso.get().load(it).into(containerView.itemImage) }
             containerView.setOnClickListener { listener(items) }
+
+
+            doAsync {
+                val teamAway = gson.fromJson(
+                    api.doRequest(TheSportDBApi.getDetailTeam(items.teamAwayId!!)),
+                    DetailTeamResponse::class.java
+                )
+
+                val teamHome = gson.fromJson(
+                    api.doRequest(TheSportDBApi.getDetailTeam(items.teamHomeId!!)),
+                    DetailTeamResponse::class.java
+                )
+
+                uiThread {
+                    teamAway.teams[0].badge.let {  Picasso.get().load(it).into(containerView.AwayLogo) }
+                    teamHome.teams[0].badge.let {  Picasso.get().load(it).into(containerView.homeTeamLogo) }
+                }
+            }
         }
     }
 }

@@ -24,6 +24,8 @@ class HighlightActivity : AppCompatActivity(), AnkoLogger, HighlightView {
         setContentView(activity_highlight)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "League Highlight"
+
         val leagueId = intent.extras?.getString(ITEM_KEY)
 
         val request = ApiRepository()

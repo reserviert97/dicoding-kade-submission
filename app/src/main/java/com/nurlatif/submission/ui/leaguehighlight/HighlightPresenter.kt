@@ -12,7 +12,7 @@ interface HighlightView {
     fun loadData(data: LeagueResponse)
 }
 
-class HighlightPresenter(private val view: HighlightView, private val api: ApiRepository, private val gson: Gson) : AnkoLogger {
+class HighlightPresenter(private val view: HighlightView, private val api: ApiRepository, private val gson: Gson) {
 
     fun getLeagueDetail(leagueId: String) {
 
@@ -22,7 +22,6 @@ class HighlightPresenter(private val view: HighlightView, private val api: ApiRe
                 DetailLeagueResponse::class.java
             )
 
-            debug("HighlightPresenter, ${data.leagues[0]}")
             uiThread {
                 view.loadData(data.leagues[0])
             }

@@ -32,8 +32,12 @@ class LeagueDetailActivity : AppCompatActivity(), AnkoLogger {
         league?.image.let { Picasso.get().load(it!!).into(detail_image) }
 
         detail_image.setOnClickListener {
-
             startActivity<HighlightActivity>(HighlightActivity.ITEM_KEY to league?.id.toString())
+        }
+
+        btnDetail.setOnClickListener {
+            startActivity<HighlightActivity>(HighlightActivity.ITEM_KEY to league?.id.toString())
+
         }
     }
 }

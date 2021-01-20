@@ -9,17 +9,13 @@ import com.google.gson.Gson
 import com.nurlatif.submission.R
 import com.nurlatif.submission.network.ApiRepository
 import com.nurlatif.submission.network.Event
-import com.nurlatif.submission.ui.leagueDetail.LeagueDetailActivity
 import com.nurlatif.submission.ui.leaguehighlight.HighlightActivity
 import com.nurlatif.submission.ui.matchDetail.DetailMatchActivity
 import kotlinx.android.synthetic.main.fragment_last_match.*
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.startActivity
-import org.jetbrains.anko.support.v4.toast
 
 
 class LastMatchFragment : Fragment(), MatchView {
-
 
     private var events: MutableList<Event> = mutableListOf()
     private lateinit var presenter: MatchPresenter
@@ -30,7 +26,7 @@ class LastMatchFragment : Fragment(), MatchView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val leagueId =  requireActivity().intent.extras?.getString(HighlightActivity.ITEM_KEY)
+        val leagueId = requireActivity().intent.extras?.getString(HighlightActivity.ITEM_KEY)
         request = ApiRepository()
         gson = Gson()
         presenter = MatchPresenter(this, request, gson)

@@ -1,8 +1,7 @@
 package com.nurlatif.submission.ui.matchDetail
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.google.gson.Gson
 import com.nurlatif.submission.R
@@ -10,8 +9,6 @@ import com.nurlatif.submission.network.ApiRepository
 import com.nurlatif.submission.network.MatchResponse
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_match.*
-import kotlinx.android.synthetic.main.league_grid_item.view.*
-import org.jetbrains.anko.imageURI
 
 class DetailMatchActivity : AppCompatActivity(), DetailMatchView{
 

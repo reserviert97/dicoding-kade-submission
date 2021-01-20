@@ -44,6 +44,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.506"
+                android:contentDescription="@string/image_desc"
                 tools:srcCompat="@drawable/spanish_la_liga" />
 
             <ImageView
@@ -56,6 +57,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.506"
+                android:contentDescription="@string/image_desc"
                 tools:srcCompat="@drawable/spanish_la_liga" />
 
             <TextView
@@ -76,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=":"
-                android:textSize="40dp"
+                android:textSize="40sp"
                 app:layout_constraintBottom_toBottomOf="@+id/homeScore"
                 app:layout_constraintEnd_toStartOf="@+id/awayScore"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -125,7 +127,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="118dp"
-        android:text="shots"
+        android:text="@string/shots"
         app:layout_constraintEnd_toEndOf="@+id/red_cards"
         app:layout_constraintStart_toStartOf="@+id/red_cards"
         app:layout_constraintTop_toBottomOf="@+id/cardView2" />

@@ -1,12 +1,12 @@
 package com.nurlatif.submission.ui.leaguehighlight
 
-import android.util.Log
 import com.google.gson.Gson
 import com.nurlatif.submission.network.ApiRepository
 import com.nurlatif.submission.network.DetailLeagueResponse
 import com.nurlatif.submission.network.LeagueResponse
 import com.nurlatif.submission.network.TheSportDBApi
-import org.jetbrains.anko.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 interface HighlightView {
     fun loadData(data: LeagueResponse)

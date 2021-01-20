@@ -19,7 +19,7 @@ import org.jetbrains.anko.startActivity
 class HighlightActivity : AppCompatActivity(), AnkoLogger, HighlightView {
     private lateinit var presenter: HighlightPresenter
     companion object {
-        val ITEM_KEY = "league_id"
+        const val ITEM_KEY = "league_id"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

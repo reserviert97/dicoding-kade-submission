@@ -37,7 +37,7 @@ class DetailMatchPresenter(
 
     }
 
-    fun getTeamBadgeUrl(teamAwayId: String, teamHomeId: String) {
+    private fun getTeamBadgeUrl(teamAwayId: String, teamHomeId: String) {
         doAsync {
             val teamAway = gson.fromJson(
                 api.doRequest(TheSportDBApi.getDetailTeam(teamAwayId)),

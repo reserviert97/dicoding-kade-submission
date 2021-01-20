@@ -99,7 +99,8 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
     override fun loadData(data: List<Event>?) {
         events.clear()
         if (data != null) {
-            events.addAll(data)
+            val finalData = data.filter { value -> value.eventType == "Soccer" }
+            events.addAll(finalData)
             adapter.notifyDataSetChanged()
         }
 

@@ -7,9 +7,9 @@ data class Favorite(
     val matchDate: String?,
     val homeTeam: String?,
     val homeId: String?,
-    val awayId: String?,
-    val awayTeam: String?,
     val homeScore: String?,
+    val awayTeam: String?,
+    val awayId: String?,
     val awayScore: String?
 ) {
 

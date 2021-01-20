@@ -3,6 +3,7 @@ package com.nurlatif.submission.ui.home
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.nurlatif.submission.R
+import com.nurlatif.submission.ui.home.favorites.FavoritesFragment
 import com.nurlatif.submission.ui.home.leagues.LeaguesFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -18,7 +19,7 @@ class HomeActivity : AppCompatActivity() {
                 }
 
                 R.id.favorites -> {
-                   //  loadFavoritesFragment(savedInstanceState)
+                     loadFavoritesFragment(savedInstanceState)
                 }
             }
             true
@@ -32,6 +33,15 @@ class HomeActivity : AppCompatActivity() {
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_container, LeaguesFragment(), LeaguesFragment::class.java.simpleName)
+                .commit()
+        }
+    }
+
+    private fun loadFavoritesFragment(savedInstanceState: Bundle?) {
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.main_container, FavoritesFragment(), FavoritesFragment::class.java.simpleName)
                 .commit()
         }
     }

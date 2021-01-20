@@ -48,6 +48,7 @@ dependencies {
     //anko
     implementation "org.jetbrains.anko:anko:$anko_version"
     implementation "org.jetbrains.anko:anko-design:$anko_version"
+    implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
 
     //gson
     implementation 'com.google.code.gson:gson:2.8.5'

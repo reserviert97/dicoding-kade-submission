@@ -29,7 +29,6 @@ class SearchMatchPresenter(
                 SearchEventsResponse::class.java
             )
 
-            Log.d("SearchMatchPresenter", "get ${data.event}")
             view.loadData(data.event)
 
         }

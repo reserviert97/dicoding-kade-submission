@@ -96,6 +96,8 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         away_shot.text = data.awayShots
 
         match = data
+
+        presenter.getTeamBadgeUrl(data.awayId, data.homeId)
     }
 
     override fun loadImage(homeBadge: String, awayBadge: String) {

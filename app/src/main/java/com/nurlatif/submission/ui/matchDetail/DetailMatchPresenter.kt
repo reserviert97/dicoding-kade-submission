@@ -27,17 +27,12 @@ class DetailMatchPresenter(
                 DetailMatchResponse::class.java
             )
 
-            Log.d("DetailMatchPresenter", "${data.events[0]}")
-
             view.loadData(data.events[0])
-
-            getTeamBadgeUrl(data.events[0].awayId, data.events[0].homeId)
-
         }
 
     }
 
-    private fun getTeamBadgeUrl(teamAwayId: String, teamHomeId: String) {
+     fun getTeamBadgeUrl(teamAwayId: String, teamHomeId: String) {
         GlobalScope.launch(context.main) {
             val teamAway = gson.fromJson(
                 api.doRequest(TheSportDBApi.getDetailTeam(teamAwayId)).await(),
@@ -48,9 +43,6 @@ class DetailMatchPresenter(
                 api.doRequest(TheSportDBApi.getDetailTeam(teamHomeId)).await(),
                 DetailTeamResponse::class.java
             )
-
-            Log.d("DetailMatchPresenter", "away : ${teamAway.teams[0]}")
-            Log.d("DetailMatchPresenter", "home : ${teamHome.teams[0]}")
 
             view.loadImage(teamHome.teams[0].badge, teamAway.teams[0].badge)
 

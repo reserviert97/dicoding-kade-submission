@@ -30,7 +30,6 @@ class HighlightPresenterTest {
     @Mock
     private lateinit var response: Deferred<String>
 
-    @Mock
     private lateinit var presenter: HighlightPresenter
 
     @Before

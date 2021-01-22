@@ -12,10 +12,13 @@ import com.nurlatif.submission.network.ApiRepository
 import com.nurlatif.submission.network.DetailTeamResponse
 import com.nurlatif.submission.network.Event
 import com.nurlatif.submission.network.TheSportDBApi
+import com.nurlatif.submission.util.CoroutineContextProvider
 import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_match.view.*
 import kotlinx.android.synthetic.main.league_grid_item.view.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -43,36 +46,41 @@ class MatchAdapter(
 
     class ViewHolder(
         override val containerView: View, private val api: ApiRepository,
-        private val gson: Gson
+        private val gson: Gson,
+        private val context: CoroutineContextProvider = CoroutineContextProvider()
     ) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
         fun bindItem(items: Event, listener: (Event) -> Unit) {
             containerView.homeName.text = items.teamHomeName
             containerView.homeScore.text = items.teamHomeScore
-
             containerView.awayName.text = items.teamAwayName
             containerView.awayScore.text = items.teamAwayScore
-
             containerView.matchDate.text = items.eventDate
-
             containerView.setOnClickListener { listener(items) }
 
 
-            doAsync {
+            GlobalScope.launch(context.main) {
                 val teamAway = gson.fromJson(
-                    api.doRequest(TheSportDBApi.getDetailTeam(items.teamAwayId!!)),
+                    api.doRequest(TheSportDBApi.getDetailTeam(items.teamAwayId!!)).await(),
                     DetailTeamResponse::class.java
                 )
 
                 val teamHome = gson.fromJson(
-                    api.doRequest(TheSportDBApi.getDetailTeam(items.teamHomeId!!)),
+                    api.doRequest(TheSportDBApi.getDetailTeam(items.teamHomeId!!)).await(),
                     DetailTeamResponse::class.java
                 )
 
-                uiThread {
-                    teamAway.teams[0].badge.let {  Picasso.get().load(it).error(R.drawable.ic_broken).placeholder(R.drawable.loading_animation).into(containerView.AwayLogo) }
-                    teamHome.teams[0].badge.let {  Picasso.get().load(it).error(R.drawable.ic_broken).placeholder(R.drawable.loading_animation).into(containerView.homeTeamLogo) }
+
+                teamAway.teams[0].badge.let {
+                    Picasso.get().load(it).error(R.drawable.ic_broken)
+                        .placeholder(R.drawable.loading_animation).into(containerView.AwayLogo)
                 }
+                teamHome.teams[0].badge.let {
+                    Picasso.get().load(it).error(R.drawable.ic_broken)
+                        .placeholder(R.drawable.loading_animation)
+                        .into(containerView.homeTeamLogo)
+                }
+
             }
         }
     }

@@ -3,6 +3,9 @@ package com.nurlatif.submission.ui.leaguehighlight.match
 import android.util.Log
 import com.google.gson.Gson
 import com.nurlatif.submission.network.*
+import com.nurlatif.submission.util.CoroutineContextProvider
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.debug
 import org.jetbrains.anko.doAsync
@@ -13,20 +16,22 @@ interface MatchView {
     fun loadData(data: List<Event>)
 }
 
-class MatchPresenter(private val view: MatchView, private val api: ApiRepository, private val gson: Gson) : AnkoLogger {
+class MatchPresenter(
+    private val view: MatchView,
+    private val api: ApiRepository,
+    private val gson: Gson,
+    private val context: CoroutineContextProvider = CoroutineContextProvider()
+) {
 
     fun getLastMatch(leagueId: String) {
 
-        doAsync {
+        GlobalScope.launch(context.main) {
             val data = gson.fromJson(
-                api.doRequest(TheSportDBApi.getPastMatch(leagueId)),
+                api.doRequest(TheSportDBApi.getPastMatch(leagueId)).await(),
                 EventsResponse::class.java
             )
 
-            uiThread {
-                view.loadData(data.events)
-                debug("MatchPresenter, ${data.events}")
-            }
+            view.loadData(data.events)
 
         }
 
@@ -34,17 +39,13 @@ class MatchPresenter(private val view: MatchView, private val api: ApiRepository
 
     fun getNextMatch(leagueId: String) {
 
-        doAsync {
+        GlobalScope.launch(context.main) {
             val data = gson.fromJson(
-                api.doRequest(TheSportDBApi.getNextMatch(leagueId)),
+                api.doRequest(TheSportDBApi.getNextMatch(leagueId)).await(),
                 EventsResponse::class.java
             )
 
-            uiThread {
-                view.loadData(data.events)
-                debug("MatchPresenter, ${data.events}")
-            }
-
+            view.loadData(data.events)
         }
 
     }

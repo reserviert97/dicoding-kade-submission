@@ -14,7 +14,7 @@ import org.jetbrains.anko.startActivity
 class LeagueDetailActivity : AppCompatActivity(), AnkoLogger {
 
     companion object {
-        val ITEM_KEY = "league_data"
+        const val ITEM_KEY = "league_data"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

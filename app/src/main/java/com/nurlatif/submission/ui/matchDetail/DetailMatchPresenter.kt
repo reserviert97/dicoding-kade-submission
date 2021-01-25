@@ -1,6 +1,7 @@
 package com.nurlatif.submission.ui.matchDetail
 
 import android.content.Context
+import android.database.sqlite.SQLiteConstraintException
 import android.util.Log
 import com.google.gson.Gson
 import com.nurlatif.submission.database.MatchEntity
@@ -10,12 +11,16 @@ import com.nurlatif.submission.util.CoroutineContextProvider
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.jetbrains.anko.db.classParser
+import org.jetbrains.anko.db.delete
+import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
+import org.jetbrains.anko.toast
 
 interface DetailMatchView {
     fun loadData(data: MatchResponse)
     fun loadImage(homeBadge: String, awayBadge: String)
     fun setFavoriteState(state: Boolean)
+    fun showToast(message: String)
 }
 
 class DetailMatchPresenter(
@@ -31,7 +36,6 @@ class DetailMatchPresenter(
             api.doRequest(TheSportDBApi.getDetailMatch(matchId)).await(),
             DetailMatchResponse::class.java
         )
-
         view.loadData(data.events[0])
     }
 
@@ -60,6 +64,44 @@ class DetailMatchPresenter(
             } else {
                 view.setFavoriteState(true)
             }
+        }
+    }
+
+    fun removeFromFavorite(id: String) {
+        try {
+            ctx.database.use {
+                delete(
+                    MatchEntity.TABLE_FAVORITE_MATCH,
+                    "(${MatchEntity.MATCH_ID} = {id})",
+                    "id" to id
+                )
+            }
+            view.showToast("Removed from favorite")
+        } catch (e: SQLiteConstraintException) {
+            view.showToast(e.localizedMessage)
+        }
+    }
+
+    fun addToFavorite(match: MatchResponse, type: String) {
+        try {
+            ctx.database.use {
+                insert(
+                    MatchEntity.TABLE_FAVORITE_MATCH,
+                    MatchEntity.MATCH_ID to match.matchId,
+                    MatchEntity.DATE to match.matchDate,
+                    MatchEntity.TEAM_HOME to match.homeTeam,
+                    MatchEntity.TEAM_HOME_ID to match.homeId,
+                    MatchEntity.TEAM_HOME_SCORE to match.homeScore,
+                    MatchEntity.AWAY_TEAM to match.awayTeam,
+                    MatchEntity.AWAY_TEAM_ID to match.awayId,
+                    MatchEntity.AWAY_TEAM_SCORE to match.awayScore,
+                    MatchEntity.MATCH_TYPE to type
+                )
+            }
+
+            view.showToast("Added to favorite")
+        } catch (e: SQLiteConstraintException) {
+            view.showToast(e.localizedMessage)
         }
     }
 

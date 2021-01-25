@@ -75,7 +75,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
             }
 
             add_to_favorite -> {
-                if (isFavorite) removeFromFavorite() else addToFavorite()
+                if (isFavorite) presenter.removeFromFavorite(id) else presenter.addToFavorite(match, matchType)
                 isFavorite = !isFavorite
                 setFavorite()
                 true
@@ -118,42 +118,9 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         }
     }
 
-    private fun addToFavorite() {
-        try {
-            database.use {
-                insert(
-                    MatchEntity.TABLE_FAVORITE_MATCH,
-                    MatchEntity.MATCH_ID to match.matchId,
-                    MatchEntity.DATE to match.matchDate,
-                    MatchEntity.TEAM_HOME to match.homeTeam,
-                    MatchEntity.TEAM_HOME_ID to match.homeId,
-                    MatchEntity.TEAM_HOME_SCORE to match.homeScore,
-                    MatchEntity.AWAY_TEAM to match.awayTeam,
-                    MatchEntity.AWAY_TEAM_ID to match.awayId,
-                    MatchEntity.AWAY_TEAM_SCORE to match.awayScore,
-                    MatchEntity.MATCH_TYPE to matchType
-                )
-            }
 
-            toast("Added to favorite")
-        } catch (e: SQLiteConstraintException) {
-            toast(e.localizedMessage)
-        }
-    }
-
-    private fun removeFromFavorite() {
-        try {
-            database.use {
-                delete(
-                    MatchEntity.TABLE_FAVORITE_MATCH,
-                    "(${MatchEntity.MATCH_ID} = {id})",
-                    "id" to id
-                )
-            }
-            toast("Removed to favorite")
-        } catch (e: SQLiteConstraintException) {
-            toast(e.localizedMessage)
-        }
+    override fun showToast(message: String) {
+        toast(message)
     }
 
     private fun setFavorite() {

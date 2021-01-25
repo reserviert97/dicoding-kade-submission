@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Football</string>
+    <string name="app_name">The Football App</string>
     <string name="item_title">League Name</string>
     <string name="image_desc">league logo</string>
     <string name="detail_desc">Description</string>

@@ -58,7 +58,5 @@ class LeaguesFragment : Fragment(), AnkoLogger {
         return inflater.inflate(R.layout.fragment_leagues, container, false)
     }
 
-    companion object {
-
-    }
+    companion object
 }

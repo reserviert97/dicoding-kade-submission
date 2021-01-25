@@ -14,12 +14,12 @@ class HomeActivity : AppCompatActivity() {
 
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.leagues-> {
+                R.id.leagues -> {
                     loadLeaguesFragment(savedInstanceState)
                 }
 
                 R.id.favorites -> {
-                     loadFavoritesFragment(savedInstanceState)
+                    loadFavoritesFragment(savedInstanceState)
                 }
             }
             true
@@ -32,7 +32,11 @@ class HomeActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.main_container, LeaguesFragment(), LeaguesFragment::class.java.simpleName)
+                .replace(
+                    R.id.main_container,
+                    LeaguesFragment(),
+                    LeaguesFragment::class.java.simpleName
+                )
                 .commit()
         }
     }
@@ -41,7 +45,11 @@ class HomeActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.main_container, FavoritesFragment(), FavoritesFragment::class.java.simpleName)
+                .replace(
+                    R.id.main_container,
+                    FavoritesFragment(),
+                    FavoritesFragment::class.java.simpleName
+                )
                 .commit()
         }
     }

@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.matchDetail.DetailMatchActivity">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_margin="5dp"
+        android:elevation="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/hightlight_card"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/homeScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:textSize="35dp"
+                app:layout_constraintBottom_toBottomOf="@+id/homeTeamLogo"
+                app:layout_constraintStart_toEndOf="@+id/homeTeamLogo"
+                app:layout_constraintTop_toTopOf="@+id/homeTeamLogo"
+                app:layout_constraintVertical_bias="0.515"
+                tools:text="5" />
+
+            <ImageView
+                android:id="@+id/homeTeamLogo"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginLeft="64dp"
+                app:layout_constraintBottom_toTopOf="@+id/homeName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.506"
+                android:contentDescription="@string/image_desc"
+                tools:srcCompat="@drawable/spanish_la_liga" />
+
+            <ImageView
+                android:id="@+id/AwayLogo"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginEnd="64dp"
+                android:layout_marginRight="64dp"
+                app:layout_constraintBottom_toTopOf="@+id/awayName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.506"
+                android:contentDescription="@string/image_desc"
+                tools:srcCompat="@drawable/spanish_la_liga" />
+
+            <TextView
+                android:id="@+id/awayScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:textSize="35dp"
+                app:layout_constraintBottom_toBottomOf="@+id/AwayLogo"
+                app:layout_constraintEnd_toStartOf="@+id/AwayLogo"
+                app:layout_constraintTop_toTopOf="@+id/AwayLogo"
+                app:layout_constraintVertical_bias="0.515"
+                tools:text="5" />
+
+            <TextView
+                android:id="@+id/dividerLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toBottomOf="@+id/homeScore"
+                app:layout_constraintEnd_toStartOf="@+id/awayScore"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/homeScore"
+                app:layout_constraintTop_toTopOf="@+id/awayScore" />
+
+            <TextView
+                android:id="@+id/homeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/homeTeamLogo"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/homeTeamLogo"
+                app:layout_constraintTop_toBottomOf="@+id/homeTeamLogo"
+                tools:text="Arsenal" />
+
+            <TextView
+                android:id="@+id/awayName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/AwayLogo"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/AwayLogo"
+                app:layout_constraintTop_toBottomOf="@+id/AwayLogo"
+                tools:text="Real Madrid" />
+
+            <TextView
+                android:id="@+id/matchDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/awayScore"
+                app:layout_constraintHorizontal_bias="0.578"
+                app:layout_constraintStart_toEndOf="@+id/homeScore"
+                app:layout_constraintTop_toBottomOf="@+id/dividerLabel"
+                tools:text="28-09-2020" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/shots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="118dp"
+        android:text="@string/shots"
+        app:layout_constraintEnd_toEndOf="@+id/red_cards"
+        app:layout_constraintStart_toStartOf="@+id/red_cards"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+
+    <TextView
+        android:id="@+id/home_goals"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:gravity="left"
+        android:maxLines="3"
+        android:text="Ronaldo"
+        app:layout_constraintEnd_toStartOf="@+id/away_goals"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+
+    <TextView
+        android:id="@+id/away_goals"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="right"
+        android:maxLines="3"
+        android:text="Neymar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/home_goals"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+
+    <TextView
+        android:id="@+id/red_cards"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="red cards"
+        app:layout_constraintBottom_toTopOf="@+id/yellow_card"
+        app:layout_constraintEnd_toEndOf="@+id/yellow_card"
+        app:layout_constraintStart_toStartOf="@+id/yellow_card"
+        app:layout_constraintTop_toBottomOf="@+id/shots" />
+
+    <TextView
+        android:id="@+id/yellow_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="yellow cards"
+        app:layout_constraintBottom_toTopOf="@+id/formation"
+        app:layout_constraintEnd_toEndOf="@+id/formation"
+        app:layout_constraintStart_toStartOf="@+id/formation"
+        app:layout_constraintTop_toBottomOf="@+id/red_cards" />
+
+    <TextView
+        android:id="@+id/formation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="formation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yellow_card" />
+
+    <TextView
+        android:id="@+id/home_red_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="2"
+        app:layout_constraintBottom_toBottomOf="@+id/red_cards"
+        app:layout_constraintEnd_toStartOf="@+id/red_cards"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/red_cards" />
+
+    <TextView
+        android:id="@+id/home_yellow_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="12"
+        app:layout_constraintBottom_toBottomOf="@+id/yellow_card"
+        app:layout_constraintEnd_toStartOf="@+id/yellow_card"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/yellow_card" />
+
+    <TextView
+        android:id="@+id/home_formation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="232"
+        app:layout_constraintBottom_toBottomOf="@+id/formation"
+        app:layout_constraintEnd_toStartOf="@+id/formation"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/formation" />
+
+    <TextView
+        android:id="@+id/away_shot"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="right"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/shots"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/shots"
+        app:layout_constraintTop_toTopOf="@+id/shots" />
+
+    <TextView
+        android:id="@+id/home_shot"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="2"
+        app:layout_constraintBottom_toBottomOf="@+id/shots"
+        app:layout_constraintEnd_toStartOf="@+id/shots"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/shots" />
+
+    <TextView
+        android:id="@+id/away_red_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="right"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/red_cards"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/red_cards"
+        app:layout_constraintTop_toTopOf="@+id/red_cards" />
+
+    <TextView
+        android:id="@+id/away_yellow_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="right"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/yellow_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/yellow_card"
+        app:layout_constraintTop_toTopOf="@+id/yellow_card" />
+
+    <TextView
+        android:id="@+id/away_formation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="right"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/formation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/formation"
+        app:layout_constraintTop_toTopOf="@+id/formation" />
+
+
+</android.support.constraint.ConstraintLayout>

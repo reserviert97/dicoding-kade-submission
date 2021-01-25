@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.leaguehighlight.HighlightActivity">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/leagueBanner"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:contentDescription="@string/image_desc"
+                app:layout_constraintBottom_toTopOf="@+id/subBanner1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/italian_serie_a" />
+
+            <TextView
+                android:id="@+id/leagueName"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:maxLines="2"
+                app:layout_constraintBottom_toTopOf="@+id/leagueCountry"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.517"
+                app:layout_constraintStart_toEndOf="@+id/leagueBanner"
+                app:layout_constraintTop_toTopOf="@id/leagueBanner"
+                tools:text="Premier League"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/leagueCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/leagueSeason"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/leagueBanner"
+                app:layout_constraintTop_toBottomOf="@+id/leagueName"
+                tools:text="England" />
+
+            <TextView
+                android:id="@+id/leagueSeason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/leagueBanner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/leagueBanner"
+                app:layout_constraintTop_toBottomOf="@+id/leagueCountry"
+                tools:text="2020" />
+
+            <ImageView
+                android:id="@+id/subBanner1"
+                android:layout_width="82dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:contentDescription="@string/image_desc"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/subBanner2"
+                app:layout_constraintHorizontal_bias="0.246"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/leagueBanner"
+                tools:srcCompat="@drawable/english_league_1" />
+
+            <ImageView
+                android:id="@+id/subBanner2"
+                android:layout_width="82dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/image_desc"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/subBanner3"
+                app:layout_constraintStart_toEndOf="@+id/subBanner1"
+                app:layout_constraintTop_toBottomOf="@+id/leagueBanner"
+                tools:srcCompat="@drawable/english_league_1" />
+
+            <ImageView
+                android:id="@+id/subBanner3"
+                android:layout_width="82dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:contentDescription="@string/image_desc"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/subBanner2"
+                app:layout_constraintTop_toBottomOf="@+id/leagueBanner"
+                tools:srcCompat="@drawable/english_league_1" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/matchViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardView"
+        app:layout_constraintVertical_bias="1.0">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/matchTab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="@color/design_default_color_primary"
+            app:tabTextColor="@color/white" />
+
+    </android.support.v4.view.ViewPager>
+
+
+</android.support.constraint.ConstraintLayout>

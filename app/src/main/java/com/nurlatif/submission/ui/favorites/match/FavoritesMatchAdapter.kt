@@ -18,13 +18,13 @@ import kotlinx.android.synthetic.main.item_match.view.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class MatchAdapter(
+class FavoritesMatchAdapter(
     private val context: Context,
     private val items: List<Event>,
     private val api: ApiRepository,
     private val gson: Gson,
     private val listener: (Event) -> Unit
-) : RecyclerView.Adapter<MatchAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<FavoritesMatchAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =

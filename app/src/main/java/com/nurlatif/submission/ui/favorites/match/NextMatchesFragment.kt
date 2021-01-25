@@ -6,19 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
+import com.nurlatif.submission.R.layout.fragment_next_match
 import com.nurlatif.submission.network.ApiRepository
 import com.nurlatif.submission.network.Event
 import com.nurlatif.submission.ui.matchDetail.DetailMatchActivity
-import kotlinx.android.synthetic.main.fragment_last_match.*
+import kotlinx.android.synthetic.main.fragment_next_match.*
 import org.jetbrains.anko.support.v4.startActivity
-import com.nurlatif.submission.R.layout.fragment_last_match
 
+class NextMatchesFragment : Fragment(), MatchView {
 
-class LastMatchFragment : Fragment(), MatchView {
-
-    private var events: MutableList<Event> = mutableListOf()
+    private var matches: MutableList<Event> = mutableListOf()
     private lateinit var presenter: MatchPresenter
-    private lateinit var adapter: MatchAdapter
+    private lateinit var adapterFavorites: FavoritesMatchAdapter
     private lateinit var gson: Gson
     private lateinit var request: ApiRepository
 
@@ -28,32 +27,35 @@ class LastMatchFragment : Fragment(), MatchView {
         gson = Gson()
         presenter = MatchPresenter(this, request, gson, requireContext())
 
-        adapter = MatchAdapter(requireContext(), events, request, gson) {
+        adapterFavorites = FavoritesMatchAdapter(requireContext(), matches, request, gson) {
             startActivity<DetailMatchActivity>(
                 DetailMatchActivity.ITEM_KEY to it.eventId,
-                DetailMatchActivity.ITEM_NAME to it.eventName
+                DetailMatchActivity.ITEM_NAME to it.eventName,
+                DetailMatchActivity.ITEM_TYPE to "next_match"
             )
         }
 
-        rv_lastmatch.adapter = adapter
+        rv_favorites_next_match.adapter = adapterFavorites
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(fragment_last_match, container, false)
+
+        return inflater.inflate(fragment_next_match, container, false)
     }
 
+
     override fun loadData(data: List<Event>) {
-        events.clear()
-        events.addAll(data)
-        adapter.notifyDataSetChanged()
+        matches.clear()
+        matches.addAll(data)
+        adapterFavorites.notifyDataSetChanged()
     }
 
     override fun onResume() {
         super.onResume()
-        presenter.getLastMatchFromLocal()
+        presenter.getNextMatchFromLocal()
     }
 
 

@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.nurlatif.submission.ui.favorites.match.NextMatchFragment">
+    tools:context="com.nurlatif.submission.ui.favorites.match.NextMatchesFragment">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/nextMatchRv"
+        android:id="@+id/rv_favorites_next_match"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>

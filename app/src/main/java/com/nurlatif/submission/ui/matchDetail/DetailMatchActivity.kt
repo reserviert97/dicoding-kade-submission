@@ -7,18 +7,21 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.google.gson.Gson
-import com.nurlatif.submission.R
-import com.nurlatif.submission.database.Favorite
+import com.nurlatif.submission.R.id.add_to_favorite
+import com.nurlatif.submission.R.layout.activity_detail_match
+import com.nurlatif.submission.R.menu.detail_match_menu
+import com.nurlatif.submission.R.drawable.ic_broken
+import com.nurlatif.submission.R.drawable.loading_animation
+import com.nurlatif.submission.R.drawable.ic_added_to_favorites
+import com.nurlatif.submission.R.drawable.ic_add_to_favorites
+import com.nurlatif.submission.database.MatchEntity
 import com.nurlatif.submission.database.database
 import com.nurlatif.submission.network.ApiRepository
 import com.nurlatif.submission.network.MatchResponse
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_match.*
-import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.delete
-import org.jetbrains.anko.db.select
-import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.toast
 
 class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
@@ -27,34 +30,38 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
     private lateinit var match: MatchResponse
     private var menuItem: Menu? = null
     private lateinit var id: String
+    private lateinit var matchType: String
     private var isFavorite: Boolean = false
 
     companion object {
         const val ITEM_KEY = "match_id"
         const val ITEM_NAME = "match_name"
+        const val ITEM_TYPE = "match_type"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_match)
+        setContentView(activity_detail_match)
         val matchId = intent.extras?.getString(ITEM_KEY)
         val matchName = intent.extras?.getString(ITEM_NAME)
+        val type = intent?.extras?.getString(ITEM_TYPE)
 
-        id = matchId!!
+        matchId?.let { id = it }
+        type?.let { matchType = it }
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = matchName
 
-
         val request = ApiRepository()
         val gson = Gson()
-        presenter = DetailMatchPresenter(this, request, gson)
+        presenter = DetailMatchPresenter(this, request, gson, this)
 
         presenter.getMatchDetail(id)
-        favoriteState()
+        presenter.checkFavorite(id)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.detail_match_menu, menu)
+        menuInflater.inflate(detail_match_menu, menu)
         menuItem = menu
         setFavorite()
         return super.onCreateOptionsMenu(menu)
@@ -67,7 +74,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
                 true
             }
 
-            R.id.add_to_favorite -> {
+            add_to_favorite -> {
                 if (isFavorite) removeFromFavorite() else addToFavorite()
                 isFavorite = !isFavorite
                 setFavorite()
@@ -102,12 +109,12 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
 
     override fun loadImage(homeBadge: String, awayBadge: String) {
         homeBadge.let {
-            Picasso.get().load(it).error(R.drawable.ic_broken)
-                .placeholder(R.drawable.loading_animation).into(homeTeamLogo)
+            Picasso.get().load(it).error(ic_broken)
+                .placeholder(loading_animation).into(homeTeamLogo)
         }
         awayBadge.let {
-            Picasso.get().load(it).error(R.drawable.ic_broken)
-                .placeholder(R.drawable.loading_animation).into(AwayLogo)
+            Picasso.get().load(it).error(ic_broken)
+                .placeholder(loading_animation).into(AwayLogo)
         }
     }
 
@@ -115,15 +122,16 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         try {
             database.use {
                 insert(
-                    Favorite.TABLE_FAVORITE,
-                    Favorite.MATCH_ID to match.matchId,
-                    Favorite.DATE to match.matchDate,
-                    Favorite.TEAM_HOME to match.homeTeam,
-                    Favorite.TEAM_HOME_ID to match.homeId,
-                    Favorite.TEAM_HOME_SCORE to match.homeScore,
-                    Favorite.AWAY_TEAM to match.awayTeam,
-                    Favorite.AWAY_TEAM_ID to match.awayId,
-                    Favorite.AWAY_TEAM_SCORE to match.awayScore
+                    MatchEntity.TABLE_FAVORITE_MATCH,
+                    MatchEntity.MATCH_ID to match.matchId,
+                    MatchEntity.DATE to match.matchDate,
+                    MatchEntity.TEAM_HOME to match.homeTeam,
+                    MatchEntity.TEAM_HOME_ID to match.homeId,
+                    MatchEntity.TEAM_HOME_SCORE to match.homeScore,
+                    MatchEntity.AWAY_TEAM to match.awayTeam,
+                    MatchEntity.AWAY_TEAM_ID to match.awayId,
+                    MatchEntity.AWAY_TEAM_SCORE to match.awayScore,
+                    MatchEntity.MATCH_TYPE to matchType
                 )
             }
 
@@ -136,7 +144,11 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
     private fun removeFromFavorite() {
         try {
             database.use {
-                delete(Favorite.TABLE_FAVORITE, "(${Favorite.MATCH_ID} = {id})", "id" to id)
+                delete(
+                    MatchEntity.TABLE_FAVORITE_MATCH,
+                    "(${MatchEntity.MATCH_ID} = {id})",
+                    "id" to id
+                )
             }
             toast("Removed to favorite")
         } catch (e: SQLiteConstraintException) {
@@ -147,19 +159,14 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
     private fun setFavorite() {
         if (isFavorite)
             menuItem?.getItem(0)?.icon =
-                ContextCompat.getDrawable(this, R.drawable.ic_added_to_favorites)
+                ContextCompat.getDrawable(this, ic_added_to_favorites)
         else
             menuItem?.getItem(0)?.icon =
-                ContextCompat.getDrawable(this, R.drawable.ic_add_to_favorites)
+                ContextCompat.getDrawable(this, ic_add_to_favorites)
     }
 
-    private fun favoriteState() {
-        database.use {
-            val result = select(Favorite.TABLE_FAVORITE)
-                .whereArgs("(${Favorite.MATCH_ID}) = {id}", "id" to id)
-            val favorite = result.parseList(classParser<Favorite>())
-            if (!favorite.isEmpty()) isFavorite = true
-        }
+    override fun setFavoriteState(state: Boolean) {
+        isFavorite = state
     }
 
 }

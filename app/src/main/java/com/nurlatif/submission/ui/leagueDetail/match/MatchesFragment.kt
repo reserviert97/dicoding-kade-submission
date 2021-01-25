@@ -35,21 +35,25 @@ class MatchesFragment : Fragment(), MatchesView {
         lastMatchAdapter = MatchesAdapter(requireContext(), lastMatches, request, gson) {
             startActivity<DetailMatchActivity>(
                 DetailMatchActivity.ITEM_KEY to it.eventId,
-                DetailMatchActivity.ITEM_NAME to it.eventName
+                DetailMatchActivity.ITEM_NAME to it.eventName,
+                DetailMatchActivity.ITEM_TYPE to "last_match"
             )
         }
 
         nextMatchAdapter = MatchesAdapter(requireContext(), nextMatches, request, gson) {
             startActivity<DetailMatchActivity>(
                 DetailMatchActivity.ITEM_KEY to it.eventId,
-                DetailMatchActivity.ITEM_NAME to it.eventName
+                DetailMatchActivity.ITEM_NAME to it.eventName,
+                DetailMatchActivity.ITEM_TYPE to "next_match"
             )
         }
 
-        rv_league_last_matches.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        rv_league_last_matches.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         rv_league_last_matches.adapter = lastMatchAdapter
 
-        rv_league_next_matches.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        rv_league_next_matches.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         rv_league_next_matches.adapter = nextMatchAdapter
     }
 
@@ -63,7 +67,8 @@ class MatchesFragment : Fragment(), MatchesView {
     override fun onResume() {
         super.onResume()
 
-        val leagueId = requireActivity().intent.extras?.getParcelable<League>(LeagueDetailActivity.ITEM_KEY)?.id.toString()
+        val leagueId =
+            requireActivity().intent.extras?.getParcelable<League>(LeagueDetailActivity.ITEM_KEY)?.id.toString()
 
         presenter.getLastMatch(leagueId)
         presenter.getNextMatch(leagueId)

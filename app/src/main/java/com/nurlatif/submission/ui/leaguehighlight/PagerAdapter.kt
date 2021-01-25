@@ -3,8 +3,8 @@ package com.nurlatif.submission.ui.leaguehighlight
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.nurlatif.submission.ui.favorites.match.NextMatchFragment
-import com.nurlatif.submission.ui.favorites.match.LastMatchFragment
+import com.nurlatif.submission.ui.favorites.match.NextMatchesFragment
+import com.nurlatif.submission.ui.favorites.match.LastMatchesFragment
 
 class PagerAdapter(manager: FragmentManager): FragmentPagerAdapter(manager) {
 
@@ -15,8 +15,8 @@ class PagerAdapter(manager: FragmentManager): FragmentPagerAdapter(manager) {
 
     override fun getItem(position: Int): Fragment {
         return when(position){
-            0 -> LastMatchFragment()
-            else -> NextMatchFragment()
+            0 -> LastMatchesFragment()
+            else -> NextMatchesFragment()
         }
     }
 

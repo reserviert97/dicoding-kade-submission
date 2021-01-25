@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
 import com.nurlatif.submission.R
-import com.nurlatif.submission.database.Favorite
+import com.nurlatif.submission.database.MatchEntity
 import com.nurlatif.submission.database.database
 import com.nurlatif.submission.network.ApiRepository
 import com.nurlatif.submission.network.Event
@@ -55,8 +55,8 @@ class FavoritesFragment : Fragment() {
     private fun showFavorite() {
         events.clear()
         context?.database?.use {
-            val result = select(Favorite.TABLE_FAVORITE)
-            val favorite = result.parseList(classParser<Favorite>())
+            val result = select(MatchEntity.TABLE_FAVORITE_MATCH)
+            val favorite = result.parseList(classParser<MatchEntity>())
 
             events.addAll(favorite.map {
                 Event(

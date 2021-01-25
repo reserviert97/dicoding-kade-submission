@@ -34,8 +34,12 @@ class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView, AnkoLogger {
 
         val request = ApiRepository()
         val gson = Gson()
+
         presenter = LeagueDetailPresenter(this, request, gson)
         presenter.getLeagueDetail(league?.id.toString())
+
+        view_pager.adapter = DetailPagerAdapter(supportFragmentManager)
+        tab_detail_league.setupWithViewPager(view_pager)
 
     }
 

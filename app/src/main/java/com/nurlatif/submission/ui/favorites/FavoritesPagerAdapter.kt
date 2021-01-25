@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import com.nurlatif.submission.ui.favorites.match.NextMatchFragment
 import com.nurlatif.submission.ui.favorites.match.LastMatchFragment
 
-class PagerAdapter(manager: FragmentManager): FragmentPagerAdapter(manager) {
+class FavoritesPagerAdapter(manager: FragmentManager): FragmentPagerAdapter(manager) {
 
     override fun getCount(): Int {
         return 2

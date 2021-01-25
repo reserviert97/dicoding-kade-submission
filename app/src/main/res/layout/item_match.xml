@@ -3,12 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="110dp"
+    android:layout_height="125dp"
     android:layout_margin="5dp"
     android:elevation="2dp">
 
     <android.support.constraint.ConstraintLayout
-
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -32,6 +31,7 @@
             android:layout_height="65dp"
             android:layout_marginStart="64dp"
             android:layout_marginLeft="64dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintBottom_toTopOf="@+id/homeName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -42,6 +42,7 @@
             android:id="@+id/AwayLogo"
             android:layout_width="65dp"
             android:layout_height="65dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="64dp"
             android:layout_marginRight="64dp"
             app:layout_constraintBottom_toTopOf="@+id/awayName"

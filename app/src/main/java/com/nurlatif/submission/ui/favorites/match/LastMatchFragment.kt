@@ -1,4 +1,4 @@
-package com.nurlatif.submission.ui.leaguehighlight.match
+package com.nurlatif.submission.ui.favorites.match
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -6,13 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
-import com.nurlatif.submission.R
 import com.nurlatif.submission.network.ApiRepository
 import com.nurlatif.submission.network.Event
-import com.nurlatif.submission.ui.leaguehighlight.HighlightActivity
 import com.nurlatif.submission.ui.matchDetail.DetailMatchActivity
 import kotlinx.android.synthetic.main.fragment_last_match.*
 import org.jetbrains.anko.support.v4.startActivity
+import com.nurlatif.submission.R.layout.fragment_last_match
 
 
 class LastMatchFragment : Fragment(), MatchView {
@@ -23,27 +22,11 @@ class LastMatchFragment : Fragment(), MatchView {
     private lateinit var gson: Gson
     private lateinit var request: ApiRepository
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val leagueId = requireActivity().intent.extras?.getString(HighlightActivity.ITEM_KEY)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         request = ApiRepository()
         gson = Gson()
-        presenter = MatchPresenter(this, request, gson)
-        presenter.getLastMatch(leagueId!!)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        return inflater.inflate(R.layout.fragment_last_match, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        super.onViewCreated(view, savedInstanceState)
+        presenter = MatchPresenter(this, request, gson, requireContext())
 
         adapter = MatchAdapter(requireContext(), events, request, gson) {
             startActivity<DetailMatchActivity>(
@@ -51,13 +34,26 @@ class LastMatchFragment : Fragment(), MatchView {
                 DetailMatchActivity.ITEM_NAME to it.eventName
             )
         }
-        lastMatchRv.adapter = adapter
+
+        rv_lastmatch.adapter = adapter
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(fragment_last_match, container, false)
     }
 
     override fun loadData(data: List<Event>) {
         events.clear()
         events.addAll(data)
         adapter.notifyDataSetChanged()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.getLastMatchFromLocal()
     }
 
 

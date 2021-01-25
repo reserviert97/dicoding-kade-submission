@@ -36,8 +36,8 @@ class HighlightActivity : AppCompatActivity(), AnkoLogger, HighlightView {
         presenter = HighlightPresenter(this, request, gson)
         presenter.getLeagueDetail(leagueId!!)
 
-        matchViewPager.adapter = PagerAdapter(supportFragmentManager)
-        matchTab.setupWithViewPager(matchViewPager)
+        view_pager.adapter = PagerAdapter(supportFragmentManager)
+        tab_detail_league.setupWithViewPager(view_pager)
 
         debug("HighlightActivity Successfully pass data : ${leagueId}")
     }
@@ -59,14 +59,14 @@ class HighlightActivity : AppCompatActivity(), AnkoLogger, HighlightView {
 
     override fun loadData(data: LeagueResponse) {
 
-        data.trophy.let { Picasso.get().load(it).error(R.drawable.ic_broken).placeholder(R.drawable.loading_animation).into(leagueBanner) }
+        data.trophy.let { Picasso.get().load(it).error(R.drawable.ic_broken).placeholder(R.drawable.loading_animation).into(img_trophy) }
         data.fanArt1.let { Picasso.get().load(it).error(R.drawable.ic_broken).placeholder(R.drawable.loading_animation).into(subBanner1) }
         data.fanArt2.let { Picasso.get().load(it).error(R.drawable.ic_broken).placeholder(R.drawable.loading_animation).into(subBanner2) }
         data.fanArt3.let { Picasso.get().load(it).error(R.drawable.ic_broken).placeholder(R.drawable.loading_animation).into(subBanner3) }
 
-        leagueName.text = data.leagueNickname.toString()
-        leagueCountry.text = data.country.toString()
-        leagueSeason.text = data.currentSeason.toString()
+        tv_league_name.text = data.leagueNickname.toString()
+        tv_country.text = data.country.toString()
+        tv_season.text = data.currentSeason.toString()
 
     }
 

@@ -1,4 +1,4 @@
-package com.nurlatif.submission.ui.leaguehighlight.match
+package com.nurlatif.submission.ui.favorites.match
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
 import com.nurlatif.submission.R
-import com.nurlatif.submission.model.League
 import com.nurlatif.submission.network.ApiRepository
 import com.nurlatif.submission.network.DetailTeamResponse
 import com.nurlatif.submission.network.Event
@@ -16,11 +15,8 @@ import com.nurlatif.submission.util.CoroutineContextProvider
 import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_match.view.*
-import kotlinx.android.synthetic.main.league_grid_item.view.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 
 class MatchAdapter(
     private val context: Context,

@@ -1,15 +1,13 @@
-package com.nurlatif.submission.ui.leaguehighlight.match
+package com.nurlatif.submission.ui.favorites.match
 
 import com.google.gson.Gson
 import com.nurlatif.submission.network.*
-import com.nurlatif.submission.ui.leaguehighlight.HighlightPresenter
 import com.nurlatif.submission.utils.TestContextProvider
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
-import org.junit.Assert.*
 import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito

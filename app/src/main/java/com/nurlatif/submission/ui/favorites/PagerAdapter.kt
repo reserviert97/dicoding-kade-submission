@@ -1,4 +1,4 @@
-package com.nurlatif.submission.ui.leaguehighlight
+package com.nurlatif.submission.ui.favorites
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -7,7 +7,6 @@ import com.nurlatif.submission.ui.favorites.match.NextMatchFragment
 import com.nurlatif.submission.ui.favorites.match.LastMatchFragment
 
 class PagerAdapter(manager: FragmentManager): FragmentPagerAdapter(manager) {
-
 
     override fun getCount(): Int {
         return 2

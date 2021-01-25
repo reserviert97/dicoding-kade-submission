@@ -10,13 +10,12 @@ import android.view.ViewGroup
 import com.nurlatif.submission.R
 import com.nurlatif.submission.model.League
 import com.nurlatif.submission.ui.leagueDetail.LeagueDetailActivity
+import com.nurlatif.submission.ui.leagues.LeaguesAdapter
 import kotlinx.android.synthetic.main.fragment_leagues.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.debug
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
-import org.jetbrains.anko.toast
 
 class LeaguesFragment : Fragment(), AnkoLogger {
 

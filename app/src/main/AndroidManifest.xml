@@ -11,6 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Submission1">
+        <activity android:name=".ui.favorites.FavoritesActivity"></activity>
+        <activity android:name=".ui.leagues.LeaguesActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,13 +26,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.searchMatch.SearchMatchActivity"/>
+        <activity android:name=".ui.searchMatch.SearchMatchActivity" />
         <activity android:name=".ui.matchDetail.DetailMatchActivity" />
         <activity android:name=".ui.leaguehighlight.HighlightActivity" />
         <activity android:name=".ui.leagueDetail.LeagueDetailActivity" />
-        <activity android:name=".ui.home.LeaguesActivity">
-
-        </activity>
+        <activity android:name=".ui.home.LeaguesActivity" />
     </application>
 
 </manifest>

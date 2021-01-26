@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
-import com.nurlatif.submission.R.layout.fragment_standings
+import com.nurlatif.submission.R.layout.fragment_league_standings
 import com.nurlatif.submission.model.League
 import com.nurlatif.submission.network.ApiRepository
 import com.nurlatif.submission.network.Standing
 import com.nurlatif.submission.ui.leagueDetail.LeagueDetailActivity
-import kotlinx.android.synthetic.main.fragment_standings.*
+import kotlinx.android.synthetic.main.fragment_league_standings.*
 
 class StandingsFragment : Fragment(), StandingsView {
 
@@ -33,7 +33,7 @@ class StandingsFragment : Fragment(), StandingsView {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(fragment_standings, container, false)
+        return inflater.inflate(fragment_league_standings, container, false)
     }
 
     override fun onResume() {

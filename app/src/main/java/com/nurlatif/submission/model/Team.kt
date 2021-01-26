@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 data class Team(
     @SerializedName("idTeam")
     val id: String?,
-    @SerializedName("")
+    @SerializedName("strTeam")
     val name: String?,
-    @SerializedName("")
+    @SerializedName("intFormedYear")
     val formedYear: String?,
     @SerializedName("strStadium")
     val stadium: String?,

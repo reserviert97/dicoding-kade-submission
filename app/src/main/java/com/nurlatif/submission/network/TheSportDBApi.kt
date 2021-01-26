@@ -32,4 +32,8 @@ object TheSportDBApi {
     fun getLeagueStandings(leagueId: String): String {
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/lookuptable.php?l=" + leagueId
     }
+
+    fun getLeagueTeams(leagueId: String): String {
+        return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/lookup_all_teams.php?id=" + leagueId
+    }
 }

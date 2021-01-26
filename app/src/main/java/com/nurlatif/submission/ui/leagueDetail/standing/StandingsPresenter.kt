@@ -27,7 +27,7 @@ class StandingsPresenter(
             StandingsResponse::class.java
         )
 
-        if (!data.table.isNullOrEmpty()) {
+        if (!data?.table.isNullOrEmpty()) {
             view.loadData(data.table)
         }
         view.hideLoading()

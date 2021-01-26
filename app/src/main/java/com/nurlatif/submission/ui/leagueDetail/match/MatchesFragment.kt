@@ -87,17 +87,17 @@ class MatchesFragment : Fragment(), MatchesView {
     }
 
     override fun showLoading() {
-        rv_league_last_matches.visibility = View.INVISIBLE
-        rv_league_next_matches.visibility = View.INVISIBLE
-        pb_last_matches.visibility = View.VISIBLE
-        pb_next_matches.visibility = View.VISIBLE
+        rv_league_last_matches?.visibility = View.INVISIBLE
+        rv_league_next_matches?.visibility = View.INVISIBLE
+        pb_last_matches?.visibility = View.VISIBLE
+        pb_next_matches?.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        rv_league_last_matches.visibility = View.VISIBLE
-        rv_league_next_matches.visibility = View.VISIBLE
-        pb_last_matches.visibility = View.GONE
-        pb_next_matches.visibility = View.GONE
+        rv_league_last_matches?.visibility = View.VISIBLE
+        rv_league_next_matches?.visibility = View.VISIBLE
+        pb_last_matches?.visibility = View.GONE
+        pb_next_matches?.visibility = View.GONE
     }
 
 

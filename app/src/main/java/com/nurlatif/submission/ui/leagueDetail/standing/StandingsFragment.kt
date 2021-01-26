@@ -50,11 +50,11 @@ class StandingsFragment : Fragment(), StandingsView {
     }
 
     override fun showLoading() {
-        pb_standings.visibility = View.VISIBLE
+        pb_standings?.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        pb_standings.visibility = View.GONE
+        pb_standings?.visibility = View.GONE
     }
 
 }

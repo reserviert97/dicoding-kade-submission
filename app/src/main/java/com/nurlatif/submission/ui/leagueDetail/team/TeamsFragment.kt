@@ -55,11 +55,11 @@ class TeamsFragment : Fragment(), TeamsView {
     }
 
     override fun showLoading() {
-        pb_teams.visibility = View.VISIBLE
+        pb_teams?.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        pb_teams.visibility = View.GONE
+        pb_teams?.visibility = View.GONE
     }
 
 

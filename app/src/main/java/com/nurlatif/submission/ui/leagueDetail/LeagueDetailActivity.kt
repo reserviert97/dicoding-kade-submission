@@ -2,6 +2,7 @@ package com.nurlatif.submission.ui.leagueDetail
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.google.gson.Gson
@@ -43,12 +44,16 @@ class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView, AnkoLogger {
 
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.league_menu, menu)
+        return true
+    }
 
-        if (item.itemId == R.id.searchMenu) {
-            startActivity<SearchMatchActivity>()
-        } else {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
             finish()
+        } else if (item.itemId == R.id.search_match_menu){
+            startActivity<SearchMatchActivity>()
         }
         return super.onOptionsItemSelected(item)
     }

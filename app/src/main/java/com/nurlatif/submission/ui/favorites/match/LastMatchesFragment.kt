@@ -9,9 +9,9 @@ import com.google.gson.Gson
 import com.nurlatif.submission.network.ApiRepository
 import com.nurlatif.submission.network.Event
 import com.nurlatif.submission.ui.matchDetail.DetailMatchActivity
-import kotlinx.android.synthetic.main.fragment_last_match.*
+import kotlinx.android.synthetic.main.fragment_favorites_last_match.*
 import org.jetbrains.anko.support.v4.startActivity
-import com.nurlatif.submission.R.layout.fragment_last_match
+import com.nurlatif.submission.R.layout.fragment_favorites_last_match
 
 
 class LastMatchesFragment : Fragment(), MatchView {
@@ -43,7 +43,7 @@ class LastMatchesFragment : Fragment(), MatchView {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(fragment_last_match, container, false)
+        return inflater.inflate(fragment_favorites_last_match, container, false)
     }
 
     override fun loadData(data: List<Event>) {

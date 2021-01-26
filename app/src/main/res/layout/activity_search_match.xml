@@ -8,7 +8,7 @@
     tools:context=".ui.searchMatch.SearchMatchActivity">
 
   <android.support.v7.widget.RecyclerView
-      android:id="@+id/searchMatchRv"
+      android:id="@+id/rv_search_match"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>

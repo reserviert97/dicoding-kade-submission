@@ -1,51 +1,47 @@
-package com.nurlatif.submission.ui.searchMatch
+package com.nurlatif.submission.ui.searchTeam
 
 import android.app.SearchManager
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.SearchView
 import com.google.gson.Gson
 import com.nurlatif.submission.R
+import com.nurlatif.submission.R.layout.activity_search_team
+import com.nurlatif.submission.model.Team
 import com.nurlatif.submission.network.ApiRepository
-import com.nurlatif.submission.network.Event
-import com.nurlatif.submission.ui.matchDetail.DetailMatchActivity
-import kotlinx.android.synthetic.main.activity_search_match.*
+import com.nurlatif.submission.ui.teamDetail.DetailTeamActivity
+import kotlinx.android.synthetic.main.activity_search_team.*
 import kotlinx.coroutines.*
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 
-class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
-    private lateinit var presenter : SearchMatchPresenter
-    private var events: MutableList<Event> = mutableListOf()
-    private lateinit var adapter : SearchMatchAdapter
-
+class SearchTeamActivity : AppCompatActivity(), SearchTeamView {
+    private lateinit var presenter: SearchTeamPresenter
+    private lateinit var adapter: SearchTeamAdapter
+    private var teams = mutableListOf<Team>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search_match)
+        setContentView(activity_search_team)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Search Match"
+        supportActionBar?.title = "Search Team"
 
         val request = ApiRepository()
         val gson = Gson()
-        presenter = SearchMatchPresenter(this, request, gson)
+        presenter = SearchTeamPresenter(this, request, gson)
 
-        adapter = SearchMatchAdapter(this, events, request, gson) {
-            startActivity<DetailMatchActivity>(
-                DetailMatchActivity.ITEM_KEY to it.eventId,
-                DetailMatchActivity.ITEM_NAME to it.eventName
-            )
+        adapter = SearchTeamAdapter(this, teams) {
+            startActivity<DetailTeamActivity>(DetailTeamActivity.ITEM_KEY to it)
         }
-        rv_search_match.adapter = adapter
 
+        rv_search_team.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
         menuInflater.inflate(R.menu.search_menu, menu)
 
         val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
@@ -65,9 +61,7 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
                 searchView.setQuery(query, false)
                 searchItem.collapseActionView()
 
-                toast("get $query")
-
-                presenter.searchMatch(query!!)
+                presenter.searchTeam(query!!)
                 return true
             }
 
@@ -76,8 +70,7 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
                 searchJob = coroutineScope.launch {
                     newText?.let {
                         delay(debouncePeriod)
-                        toast("get $newText")
-                        presenter.searchMatch(newText)
+                        presenter.searchTeam(newText)
                     }
                 }
                 return false
@@ -96,15 +89,17 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun loadData(data: List<Event>?) {
-        events.clear()
-        if (data != null) {
-            val finalData = data.filter { value -> value.eventType == "Soccer" }
-            events.addAll(finalData)
-            adapter.notifyDataSetChanged()
-        }
-
+    override fun loadData(data: List<Team>) {
+        teams.clear()
+        teams.addAll(data)
+        adapter.notifyDataSetChanged()
     }
 
+    override fun showLoading() {
+        pb_search_team?.visibility = View.VISIBLE
+    }
 
+    override fun hideLoading() {
+        pb_search_team?.visibility = View.GONE
+    }
 }

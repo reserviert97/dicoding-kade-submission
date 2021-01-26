@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
-import com.nurlatif.submission.R.layout.fragment_next_match
+import com.nurlatif.submission.R.layout.fragment_favorites_next_match
 import com.nurlatif.submission.network.ApiRepository
 import com.nurlatif.submission.network.Event
 import com.nurlatif.submission.ui.matchDetail.DetailMatchActivity
-import kotlinx.android.synthetic.main.fragment_next_match.*
+import kotlinx.android.synthetic.main.fragment_favorites_next_match.*
 import org.jetbrains.anko.support.v4.startActivity
 
 class NextMatchesFragment : Fragment(), MatchView {
@@ -43,7 +43,7 @@ class NextMatchesFragment : Fragment(), MatchView {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(fragment_next_match, container, false)
+        return inflater.inflate(fragment_favorites_next_match, container, false)
     }
 
 

@@ -14,6 +14,7 @@ import com.nurlatif.submission.model.League
 import com.nurlatif.submission.network.ApiRepository
 import com.nurlatif.submission.network.LeagueResponse
 import com.nurlatif.submission.ui.searchMatch.SearchMatchActivity
+import com.nurlatif.submission.ui.searchTeam.SearchTeamActivity
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.startActivity
 
@@ -54,6 +55,8 @@ class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView, AnkoLogger {
             finish()
         } else if (item.itemId == R.id.search_match_menu){
             startActivity<SearchMatchActivity>()
+        } else if(item.itemId == R.id.search_team_menu) {
+            startActivity<SearchTeamActivity>()
         }
         return super.onOptionsItemSelected(item)
     }

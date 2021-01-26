@@ -35,12 +35,11 @@ class LeaguesActivity : AppCompatActivity() {
     private fun initData() {
         val id = resources.getIntArray(leaguesId)
         val name = resources.getStringArray(leaguesName)
-        val desc = resources.getStringArray(leaguesDesc)
         val image = resources.obtainTypedArray(leaguesImage)
 
         leagues.clear()
         for (i in id.indices) {
-            leagues.add(League(id[i], name[i], desc[i], image.getResourceId(i, 0)))
+            leagues.add(League(id[i], name[i], image.getResourceId(i, 0)))
         }
 
         image.recycle()

@@ -4,17 +4,18 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.nurlatif.submission.ui.leagueDetail.match.MatchesFragment
+import com.nurlatif.submission.ui.leagueDetail.standing.StandingsFragment
+import com.nurlatif.submission.ui.leagueDetail.team.TeamsFragment
 
 class DetailPagerAdapter(manager: FragmentManager): FragmentPagerAdapter(manager) {
 
-    override fun getCount(): Int {
-        return 3
-    }
+    override fun getCount() = 3
 
     override fun getItem(position: Int): Fragment {
         return when(position){
             0 -> MatchesFragment()
-            else -> Fragment()
+            1 -> StandingsFragment()
+            else -> TeamsFragment()
         }
     }
 

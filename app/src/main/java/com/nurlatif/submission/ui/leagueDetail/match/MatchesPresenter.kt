@@ -32,7 +32,9 @@ class MatchesPresenter(
             EventsResponse::class.java
         )
 
-        view.loadDataLastMatches(data.events)
+        if (!data.events.isNullOrEmpty()) {
+            view.loadDataLastMatches(data.events)
+        }
         view.hideLoading()
     }
 
@@ -44,7 +46,9 @@ class MatchesPresenter(
             EventsResponse::class.java
         )
 
-        view.loadNextLastMatches(data.events)
+        if (!data.events.isNullOrEmpty()) {
+            view.loadNextLastMatches(data.events)
+        }
         view.hideLoading()
     }
 

@@ -17,6 +17,7 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_match.view.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.jetbrains.anko.image
 
 class MatchesAdapter(
     private val context: Context,
@@ -36,6 +37,12 @@ class MatchesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItem(items[position], listener)
+    }
+
+    override fun onViewDetachedFromWindow(holder: ViewHolder) {
+        super.onViewAttachedToWindow(holder)
+        holder.containerView.homeTeamLogo.image = null
+        holder.containerView.AwayLogo.image = null
     }
 
     override fun getItemCount(): Int = items.size

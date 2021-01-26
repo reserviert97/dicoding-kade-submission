@@ -65,7 +65,7 @@ class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView, AnkoLogger {
                 .placeholder(R.drawable.loading_animation).into(img_trophy)
         }
 
-        tv_league_name.text = data.leagueNickname.toString()
+        tv_team_name.text = data.leagueNickname.toString()
         tv_country.text = data.country.toString()
         tv_season.text = data.currentSeason.toString()
         tv_gender.text = data.gender.toString()

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Submission1">
-        <activity android:name=".ui.favorites.FavoritesActivity"></activity>
+        <activity android:name=".ui.teamDetail.DetailTeamActivity"></activity>
+        <activity android:name=".ui.favorites.FavoritesActivity" />
         <activity android:name=".ui.leagues.LeaguesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

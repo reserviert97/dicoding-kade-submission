@@ -11,7 +11,9 @@ import com.nurlatif.submission.model.League
 import com.nurlatif.submission.model.Team
 import com.nurlatif.submission.network.ApiRepository
 import com.nurlatif.submission.ui.leagueDetail.LeagueDetailActivity
+import com.nurlatif.submission.ui.teamDetail.DetailTeamActivity
 import kotlinx.android.synthetic.main.fragment_league_teams.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 class TeamsFragment : Fragment(), TeamsView {
@@ -27,7 +29,7 @@ class TeamsFragment : Fragment(), TeamsView {
         presenter = TeamsPresenter(this, request, gson)
 
         adapter = TeamsAdapter(requireContext(), teams){
-            toast("Clicked at ${it.name}")
+            startActivity<DetailTeamActivity>(DetailTeamActivity.ITEM_KEY to it)
         }
 
         rv_league_teams.adapter = adapter

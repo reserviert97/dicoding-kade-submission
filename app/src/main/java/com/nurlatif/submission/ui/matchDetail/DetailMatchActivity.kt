@@ -1,6 +1,5 @@
 package com.nurlatif.submission.ui.matchDetail
 
-import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
@@ -9,19 +8,15 @@ import android.view.MenuItem
 import com.google.gson.Gson
 import com.nurlatif.submission.R.id.add_to_favorite
 import com.nurlatif.submission.R.layout.activity_detail_match
-import com.nurlatif.submission.R.menu.detail_match_menu
+import com.nurlatif.submission.R.menu.add_favorite_menu
 import com.nurlatif.submission.R.drawable.ic_broken
 import com.nurlatif.submission.R.drawable.loading_animation
 import com.nurlatif.submission.R.drawable.ic_added_to_favorites
 import com.nurlatif.submission.R.drawable.ic_add_to_favorites
-import com.nurlatif.submission.database.MatchEntity
-import com.nurlatif.submission.database.database
 import com.nurlatif.submission.network.ApiRepository
 import com.nurlatif.submission.network.MatchResponse
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_match.*
-import org.jetbrains.anko.db.insert
-import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.toast
 
 class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
@@ -61,7 +56,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(detail_match_menu, menu)
+        menuInflater.inflate(add_favorite_menu, menu)
         menuItem = menu
         setFavorite()
         return super.onCreateOptionsMenu(menu)

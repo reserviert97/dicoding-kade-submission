@@ -1,7 +1,10 @@
 package com.nurlatif.submission.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Team(
     @SerializedName("idTeam")
     val id: String?,
@@ -17,4 +20,4 @@ data class Team(
     val description: String?,
     @SerializedName("strTeamBadge")
     val badge: String?
-)
+) : Parcelable

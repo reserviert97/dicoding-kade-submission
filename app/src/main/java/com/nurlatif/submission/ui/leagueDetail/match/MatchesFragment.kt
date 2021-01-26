@@ -8,13 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
-import com.nurlatif.submission.R.layout.fragment_leagues_matches
+import com.nurlatif.submission.R.layout.fragment_league_matches
 import com.nurlatif.submission.model.League
 import com.nurlatif.submission.network.ApiRepository
 import com.nurlatif.submission.network.Event
 import com.nurlatif.submission.ui.leagueDetail.LeagueDetailActivity
 import com.nurlatif.submission.ui.matchDetail.DetailMatchActivity
-import kotlinx.android.synthetic.main.fragment_leagues_matches.*
+import kotlinx.android.synthetic.main.fragment_league_matches.*
 import org.jetbrains.anko.support.v4.startActivity
 
 
@@ -61,7 +61,7 @@ class MatchesFragment : Fragment(), MatchesView {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(fragment_leagues_matches, container, false)
+        return inflater.inflate(fragment_league_matches, container, false)
     }
 
     override fun onResume() {

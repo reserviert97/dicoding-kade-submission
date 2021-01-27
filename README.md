@@ -5,7 +5,7 @@ This is an repository from Dicoding Kotlin Android Developer course.
 ## Installation
 Clone this repository and import into **Android Studio**
 ```bash
-git clone git@github.com:reserviert97/dicoding-kade-submission1.git
+git clone git@github.com:reserviert97/dicoding-kade-submission.git
 ```
 
 ## Generating signed APK

@@ -1,85 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    tools:context=".ui.leagueDetail.LeagueDetailActivity">
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".ui.leagueDetail.LeagueDetailActivity">
+        android:layout_height="360dp"
+        android:fitsSystemWindows="true">
 
-        <ImageView
-            android:id="@+id/detail_image"
-            android:layout_width="@dimen/detail_image_width"
-            android:layout_height="@dimen/detail_image_width"
-            android:layout_marginTop="@dimen/detail_margin"
-            android:src="@drawable/english_league_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/image_desc" />
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/ctl_league_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-        <TextView
-            android:id="@+id/detail_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_image"
-            tools:text="@string/item_title" />
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="340dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/detail_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_title"
-            tools:text="@string/item_title" />
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
+                    <ImageView
+                        android:id="@+id/img_trophy"
+                        android:layout_width="155dp"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="16dp"
+                        android:contentDescription="@string/image_desc"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:srcCompat="@drawable/italian_serie_a" />
 
-        <TextView
-            android:id="@+id/detail_label_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/detail_padding"
-            android:layout_marginLeft="@dimen/detail_padding"
-            android:layout_marginTop="50dp"
-            android:text="@string/detail_desc"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_id" />
+                    <TextView
+                        android:id="@+id/tv_team_name"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"
+                        android:maxLines="2"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/title_text_size"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/img_trophy"
+                        tools:text="Premier League" />
 
-        <TextView
-            android:id="@+id/detail_desc"
+                    <TextView
+                        android:id="@+id/tv_country"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:textSize="@dimen/label_text_size"
+                        app:layout_constraintStart_toEndOf="@+id/label_country"
+                        app:layout_constraintTop_toTopOf="@+id/label_country"
+                        tools:text="England" />
+
+                    <TextView
+                        android:id="@+id/tv_season"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginLeft="22dp"
+                        android:textSize="@dimen/label_text_size"
+                        app:layout_constraintStart_toEndOf="@+id/label_season"
+                        app:layout_constraintTop_toTopOf="@+id/label_season"
+                        tools:text="2020" />
+
+                    <TextView
+                        android:id="@+id/label_country"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/country"
+                        android:textSize="@dimen/label_text_size"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_team_name" />
+
+                    <TextView
+                        android:id="@+id/label_season"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/season"
+                        android:textSize="@dimen/label_text_size"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/label_country" />
+
+                    <TextView
+                        android:id="@+id/label_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="148dp"
+                        android:layout_marginLeft="148dp"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/type"
+                        android:textSize="@dimen/label_text_size"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/label_country"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_team_name" />
+
+                    <TextView
+                        android:id="@+id/label_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/gender"
+                        android:textSize="@dimen/label_text_size"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/label_type"
+                        app:layout_constraintTop_toBottomOf="@+id/label_type" />
+
+                    <TextView
+                        android:id="@+id/tv_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
+                        app:layout_constraintStart_toEndOf="@+id/label_type"
+                        app:layout_constraintTop_toTopOf="@+id/label_type"
+                        tools:text="Soccer" />
+
+                    <TextView
+                        android:id="@+id/tv_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        app:layout_constraintStart_toEndOf="@+id/label_gender"
+                        app:layout_constraintTop_toTopOf="@+id/label_gender"
+                        tools:text="Male" />
+
+                    <ProgressBar
+                        android:id="@+id/pb_detail_league"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </android.support.constraint.ConstraintLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_detail_league"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/detail_padding"
-            android:justificationMode="inter_word"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_label_desc"
-            app:layout_constraintVertical_bias="0.063"
-            tools:text="lorem ipsum"
-            tools:targetApi="o" />
+            android:layout_gravity="top"
+            android:background="@color/design_default_color_primary"
+            app:tabTextColor="@color/white" />
 
-        <Button
-            android:id="@+id/btnDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/detail"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_title" />
+    </android.support.v4.view.ViewPager>
 
-    </android.support.constraint.ConstraintLayout>
-
-</ScrollView>
+</android.support.design.widget.CoordinatorLayout>

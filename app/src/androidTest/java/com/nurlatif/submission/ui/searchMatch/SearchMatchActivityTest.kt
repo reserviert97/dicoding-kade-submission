@@ -26,14 +26,14 @@ class SearchMatchActivityTest {
     fun testSearchBehavior() {
 
         onView(withId(R.id.searchMatch)).check(matches(isDisplayed()))
-        onView(withId(R.id.searchMatchRv)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_search_match)).check(matches(isDisplayed()))
 
         onView(withId(R.id.searchMatch)).perform(click())
         onView(withId(R.id.searchMatch)).perform(typeText("manchester"))
         onView(withId(R.id.searchMatch)).perform(pressKey(KeyEvent.KEYCODE_ENTER))
 
         Thread.sleep(5000)
-        onView(withId(R.id.searchMatchRv)).perform(
+        onView(withId(R.id.rv_search_match)).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                 1,
                 click()

@@ -40,7 +40,7 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
                 DetailMatchActivity.ITEM_NAME to it.eventName
             )
         }
-        searchMatchRv.adapter = adapter
+        rv_search_match.adapter = adapter
 
     }
 

@@ -30,7 +30,13 @@ data class LeagueResponse(
     val fanArt3: String? = null,
 
     @SerializedName("strFanart4")
-    val fanArt4: String? = null
+    val fanArt4: String? = null,
+
+    @SerializedName("strGender")
+    val gender: String? = null,
+
+    @SerializedName("strSport")
+    val type: String? = null
 )
 
 

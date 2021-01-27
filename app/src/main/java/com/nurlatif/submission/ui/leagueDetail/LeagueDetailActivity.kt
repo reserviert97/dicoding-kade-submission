@@ -2,16 +2,24 @@ package com.nurlatif.submission.ui.leagueDetail
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import com.google.gson.Gson
+import com.nurlatif.submission.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_league.*
 import com.nurlatif.submission.R.layout.activity_detail_league
 import com.nurlatif.submission.model.League
-import com.nurlatif.submission.ui.leaguehighlight.HighlightActivity
+import com.nurlatif.submission.network.ApiRepository
+import com.nurlatif.submission.network.LeagueResponse
+import com.nurlatif.submission.ui.searchMatch.SearchMatchActivity
+import com.nurlatif.submission.ui.searchTeam.SearchTeamActivity
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.debug
 import org.jetbrains.anko.startActivity
 
-class LeagueDetailActivity : AppCompatActivity(), AnkoLogger {
+class LeagueDetailActivity : AppCompatActivity(), LeagueDetailView, AnkoLogger {
+    private lateinit var presenter: LeagueDetailPresenter
 
     companion object {
         const val ITEM_KEY = "league_data"
@@ -23,21 +31,56 @@ class LeagueDetailActivity : AppCompatActivity(), AnkoLogger {
 
         val league = intent.extras?.getParcelable<League>(ITEM_KEY)
 
-        debug("[LeagueDetailActivity] Successfully pass data : ${league?.name}")
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = league?.name
 
-        detail_title.text = league?.name
-        detail_id.text = league?.id.toString()
-        detail_desc.text = league?.description
+        val request = ApiRepository()
+        val gson = Gson()
 
-        league?.image.let { Picasso.get().load(it!!).into(detail_image) }
+        presenter = LeagueDetailPresenter(this, request, gson)
+        presenter.getLeagueDetail(league?.id.toString())
 
-        detail_image.setOnClickListener {
-            startActivity<HighlightActivity>(HighlightActivity.ITEM_KEY to league?.id.toString())
+        view_pager.adapter = DetailPagerAdapter(supportFragmentManager)
+        tab_detail_league.setupWithViewPager(view_pager)
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.league_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+        } else if (item.itemId == R.id.search_match_menu){
+            startActivity<SearchMatchActivity>()
+        } else if(item.itemId == R.id.search_team_menu) {
+            startActivity<SearchTeamActivity>()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun loadData(data: LeagueResponse) {
+
+        data.trophy.let {
+            Picasso.get().load(it).error(R.drawable.ic_broken)
+                .placeholder(R.drawable.loading_animation).into(img_trophy)
         }
 
-        btnDetail.setOnClickListener {
-            startActivity<HighlightActivity>(HighlightActivity.ITEM_KEY to league?.id.toString())
+        tv_team_name.text = data.leagueNickname.toString()
+        tv_country.text = data.country.toString()
+        tv_season.text = data.currentSeason.toString()
+        tv_gender.text = data.gender.toString()
+        tv_type.text = data.type
 
-        }
+    }
+
+    override fun showLoading() {
+        pb_detail_league.visibility = View.VISIBLE
+    }
+
+    override fun hideLoading() {
+        pb_detail_league.visibility = View.GONE
     }
 }

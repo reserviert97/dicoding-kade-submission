@@ -7,11 +7,11 @@ import org.jetbrains.anko.db.TEXT
 import org.jetbrains.anko.db.createTable
 import org.jetbrains.anko.db.dropTable
 
-class DatabaseHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, DB_NAME, null, 7) {
+class DatabaseHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, DB_NAME, null, 8) {
 
     companion object {
         private var instance: DatabaseHelper? = null
-        const val DB_NAME = "FavoriteMatch.db"
+        const val DB_NAME = "Favorites.db"
 
         @Synchronized
         fun getInstance(ctx: Context): DatabaseHelper {
@@ -24,7 +24,7 @@ class DatabaseHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, DB_NAME, null,
 
     override fun onCreate(db: SQLiteDatabase) {
         createTableFavoriteMatch(db)
-        createTableFavoriteMatch(db)
+        createTableFavoriteTeam(db)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
